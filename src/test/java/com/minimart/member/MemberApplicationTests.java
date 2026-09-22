@@ -37,11 +37,9 @@ class MemberApplicationTests {
 	}
 
 	@Test
-	void laptopYamlMarksNacosOptionalAndRuntimeRequiresIt() throws Exception {
-		String laptop = Files.readString(Path.of("src/main/resources/application.yaml"));
-		assertThat(laptop).contains("optional:nacos:minimart-common.yaml?group=MINIMART");
-		String runtime = Files.readString(Path.of("src/main/resources/application-runtime.yaml"));
-		assertThat(runtime).doesNotContain("optional:nacos");
-		assertThat(runtime).contains("- nacos:minimart-common.yaml?group=MINIMART");
+	void applicationYamlIsSelfContainedWithoutNacos() throws Exception {
+		String yaml = Files.readString(Path.of("src/main/resources/application.yaml"));
+		assertThat(yaml).doesNotContain("nacos");
+		assertThat(Path.of("src/main/resources/application-runtime.yaml")).doesNotExist();
 	}
 }

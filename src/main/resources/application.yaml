@@ -1,20 +1,15 @@
 spring:
   application:
     name: member-service
-  config:
-    import:
-      - optional:nacos:minimart-common.yaml?group=MINIMART
-      - optional:nacos:${spring.application.name}.yaml?group=MINIMART
+  jackson:
+    default-property-inclusion: non_null
   cloud:
-    nacos:
-      server-addr: ${NACOS_ADDR:127.0.0.1:8848}
-      discovery:
-        namespace: ${NACOS_NS:dev}
-        group: MINIMART
-      config:
-        namespace: ${NACOS_NS:dev}
-        group: MINIMART
-        file-extension: yaml
+    compatibility-verifier:
+      enabled: true
+  datasource:
+    url: jdbc:mysql://${DB_HOST:host.docker.internal}:${DB_PORT:3306}/minimart_member?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: ${DB_USERNAME:minimart}
+    password: ${DB_PASSWORD:minimart}
 
 server:
   port: 8081
@@ -27,3 +22,7 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{correlationId:-}]"

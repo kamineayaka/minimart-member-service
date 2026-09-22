@@ -26,9 +26,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
-	implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
-	implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+	implementation("org.springframework.cloud:spring-cloud-commons")
+	implementation("org.springframework.cloud:spring-cloud-context")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
