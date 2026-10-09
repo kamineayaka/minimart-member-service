@@ -26,12 +26,22 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-flyway")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-security-oauth2-resource-server")
+	implementation("org.flywaydb:flyway-mysql")
+	runtimeOnly("com.mysql:mysql-connector-j")
 	implementation("org.springframework.cloud:spring-cloud-commons")
 	implementation("org.springframework.cloud:spring-cloud-context")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-restclient")
+	testImplementation("org.springframework.boot:spring-boot-resttestclient")
 	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-security-test")
+	testImplementation("org.testcontainers:testcontainers-mysql")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
