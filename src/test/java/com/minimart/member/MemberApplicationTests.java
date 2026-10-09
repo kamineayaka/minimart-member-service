@@ -15,10 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.minimart.api.http.CorrelationHeaders;
+import com.minimart.member.support.MemberSpringTest;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class MemberApplicationTests {
+class MemberApplicationTests extends MemberSpringTest {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -40,6 +41,10 @@ class MemberApplicationTests {
 	void applicationYamlIsSelfContainedWithoutNacos() throws Exception {
 		String yaml = Files.readString(Path.of("src/main/resources/application.yaml"));
 		assertThat(yaml).doesNotContain("nacos");
+		assertThat(yaml).doesNotContain("product-service");
+		assertThat(yaml).doesNotContain("order-service");
+		assertThat(yaml).doesNotContain("payment-service");
+		assertThat(yaml).doesNotContain("feign");
 		assertThat(Path.of("src/main/resources/application-runtime.yaml")).doesNotExist();
 	}
 }

@@ -7,12 +7,27 @@ spring:
     compatibility-verifier:
       enabled: true
   datasource:
-    url: jdbc:mysql://${DB_HOST:host.docker.internal}:${DB_PORT:3306}/minimart_member?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://${DB_HOST:host.docker.internal}:${DB_PORT:3306}/minimart_member?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&connectionTimeZone=UTC
     username: ${DB_USERNAME:minimart}
     password: ${DB_PASSWORD:minimart}
+    hikari:
+      connection-init-sql: SET time_zone = '+00:00'
+  flyway:
+    enabled: true
 
 server:
   port: 8081
+  error:
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+
+minimart:
+  jwt:
+    # HS256 key, at least 32 bytes. Production sets JWT_SECRET; gateway will verify with the same secret.
+    secret: ${JWT_SECRET:dev-only-member-jwt-secret-change-me}
+    ttl: ${JWT_TTL:PT12H}
+    issuer: member-service
 
 management:
   endpoints:
